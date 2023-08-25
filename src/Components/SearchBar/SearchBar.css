@@ -1,0 +1,17 @@
+input{
+    display: block;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    border: 1px solid black;
+    width: 40%;
+}
+input.nameInputBox:focus-visible{
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+    /* border: none!important; */
+    outline: 1px solid rgba(81, 203, 238, 1);
+}
+span.error{
+    color: red;
+    font-size: 1rem;
+}
