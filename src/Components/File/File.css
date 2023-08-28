@@ -1,3 +1,6 @@
 .fileWrapper{
     padding-left: 20px;
 }
+span.deleteBtn, span.rename, span.rotate{
+    cursor: pointer;
+}

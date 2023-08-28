@@ -7,6 +7,7 @@ const SearchBar = (props) => {
         class="nameInputBox"
         placeholder="Enter File/Folder name here"
         id="fileName"
+        value={props.fName}
         onChange={(e) => {
           props.setFName(e.target.value);
         }}

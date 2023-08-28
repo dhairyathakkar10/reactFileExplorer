@@ -2,3 +2,6 @@
     margin-top: .5rem;
     padding-left: 20px;
 }
+span.createFolderBtn:hover, span.createFileBtn:hover, span.deleteBtn, span.rename, span.rotate{
+    cursor: pointer;
+}
