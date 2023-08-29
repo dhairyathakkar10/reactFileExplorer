@@ -2,7 +2,12 @@ import "./Folder.css";
 const Folder = (props) => {
   return (
     <div className="folderWrapper">
-      <span className="rotate">&#10148;</span>
+      <span
+        className="rotate"
+        onClick={() => props.toggle(props.folderData, props.folderData.id)}
+      >
+        &#10148;
+      </span>
       <span>{props.folderData.name}</span>
 
       {props.inputName !== "" ? (

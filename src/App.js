@@ -10,17 +10,8 @@ function App() {
       parentNodeId: -1,
       name: "root",
       type: "folder",
-      children: [
-        // {
-        //   id: 1,
-        //   level: 1,
-        //   key: 0,
-        //   parentNodeid: -1,
-        //   name: "root",
-        //   type: "file",
-        //   children: null,
-        // },
-      ],
+      visible: true,
+      children: [],
     },
   ]);
   return (

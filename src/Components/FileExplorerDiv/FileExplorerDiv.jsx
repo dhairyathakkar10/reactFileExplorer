@@ -14,6 +14,7 @@ const FileExplorerDiv = ({ store, data, inputName, setData, setFName }) => {
       parentNodeId: id,
       name: inputName,
       children: [],
+      visible: true,
       type: "folder",
     };
     storeData.forEach((el) => {
@@ -40,6 +41,7 @@ const FileExplorerDiv = ({ store, data, inputName, setData, setFName }) => {
       parentNodeId: id,
       name: inputName,
       children: null,
+      visible: true,
       type: "file",
     };
     storeData.forEach((el) => {
@@ -120,22 +122,36 @@ const FileExplorerDiv = ({ store, data, inputName, setData, setFName }) => {
 
     console.log(storeData, " ", id, " ", parentNodeId);
   };
+  const toggle = (folderData, id) => {
+    console.log(id);
+    console.log(folderData);
+    folderData.children.forEach((child) => {
+      child.visible = !child.visible;
+      if (child.type === "folder" && child.children != []) {
+        toggle(child, id);
+      }
+    });
+    setData([...store]);
+  };
   return (
     <div>
       {data.map((el) =>
         el.type === "folder" ? (
           <div style={{ paddingLeft: "20px" }}>
-            <Folder
-              folderData={el}
-              data={data}
-              inputName={inputName}
-              setData={setData}
-              addFolder={addFolder}
-              addFile={addFile}
-              store={store}
-              deleteElem={deleteElem}
-              rename={rename}
-            />
+            {el.visible && (
+              <Folder
+                folderData={el}
+                data={data}
+                inputName={inputName}
+                setData={setData}
+                addFolder={addFolder}
+                addFile={addFile}
+                store={store}
+                deleteElem={deleteElem}
+                rename={rename}
+                toggle={toggle}
+              />
+            )}
             {el.children && (
               <FileExplorerDiv
                 data={el.children}
@@ -148,14 +164,16 @@ const FileExplorerDiv = ({ store, data, inputName, setData, setFName }) => {
           </div>
         ) : (
           <div style={{ paddingLeft: "20px" }}>
-            <File
-              fileData={el}
-              store={store}
-              inputName={inputName}
-              data={data}
-              setData={setData}
-              deleteElem={deleteElem}
-            />
+            {el.visible && (
+              <File
+                fileData={el}
+                store={store}
+                inputName={inputName}
+                data={data}
+                setData={setData}
+                deleteElem={deleteElem}
+              />
+            )}
           </div>
         )
       )}
