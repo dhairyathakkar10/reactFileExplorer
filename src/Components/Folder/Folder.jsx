@@ -1,5 +1,4 @@
 import "./Folder.css";
-
 const Folder = (props) => {
   return (
     <div className="folderWrapper">
@@ -25,7 +24,18 @@ const Folder = (props) => {
         ""
       )}
 
-      <span className="deleteBtn">&#x2715;</span>
+      <span
+        className="deleteBtn"
+        onClick={() =>
+          props.deleteElem(
+            props.store,
+            props.folderData.id,
+            props.folderData.parentNodeId
+          )
+        }
+      >
+        &#x2715;
+      </span>
       <span className="rename">&#9998;</span>
     </div>
   );

@@ -60,6 +60,30 @@ const FileExplorerDiv = ({ store, data, inputName, setData, setFName }) => {
       }
     });
   };
+  const deleteElem = (storeData, id, parentNodeId) => {
+    let root = false;
+    if (id === -1) {
+      root = true;
+      window.alert("Cannot delete the root folder!");
+    }
+    if (!root) {
+      storeData.forEach((el) => {
+        if (el.id === parentNodeId) {
+          let children = el.children;
+          for (let i = 0; i < children.length; i++) {
+            if (children[i].id === id) {
+              children.splice(i, 1);
+            }
+          }
+          el.children = children;
+          setData([...store]);
+        }
+        if (el.children !== null) {
+          deleteElem(el.children, id, parentNodeId);
+        }
+      });
+    }
+  };
   return (
     <div>
       {data.map((el) =>
@@ -73,6 +97,7 @@ const FileExplorerDiv = ({ store, data, inputName, setData, setFName }) => {
               addFolder={addFolder}
               addFile={addFile}
               store={store}
+              deleteElem={deleteElem}
             />
             {el.children && (
               <FileExplorerDiv
@@ -88,9 +113,11 @@ const FileExplorerDiv = ({ store, data, inputName, setData, setFName }) => {
           <div style={{ paddingLeft: "20px" }}>
             <File
               fileData={el}
+              store={store}
               inputName={inputName}
               data={data}
               setData={setData}
+              deleteElem={deleteElem}
             />
           </div>
         )

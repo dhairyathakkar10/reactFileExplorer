@@ -7,7 +7,7 @@ function App() {
       id: -1,
       key: 0,
       level: 0,
-      parentNodeid: -1,
+      parentNodeId: -1,
       name: "root",
       type: "folder",
       children: [
