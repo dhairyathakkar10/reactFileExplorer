@@ -1,6 +1,8 @@
 .folderWrapper{
     margin-top: .5rem;
     padding-left: 20px;
+    display: flex;
+    /* justify-content: center; */
 }
 span.createFolderBtn:hover, span.createFileBtn:hover, span.deleteBtn, span.rename, span.rotate{
     cursor: pointer;

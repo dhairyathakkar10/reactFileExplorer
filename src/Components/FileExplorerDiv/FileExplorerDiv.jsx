@@ -127,7 +127,7 @@ const FileExplorerDiv = ({ store, data, inputName, setData, setFName }) => {
     console.log(folderData);
     folderData.children.forEach((child) => {
       child.visible = !child.visible;
-      if (child.type === "folder" && child.children != []) {
+      if (child.type === "folder" && child.children !== []) {
         toggle(child, id);
       }
     });
