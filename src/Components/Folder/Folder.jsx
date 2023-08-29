@@ -36,7 +36,18 @@ const Folder = (props) => {
       >
         &#x2715;
       </span>
-      <span className="rename">&#9998;</span>
+      <span
+        className="rename"
+        onClick={() =>
+          props.rename(
+            props.store,
+            props.folderData.id,
+            props.folderData.parentNodeId
+          )
+        }
+      >
+        &#9998;
+      </span>
     </div>
   );
 };

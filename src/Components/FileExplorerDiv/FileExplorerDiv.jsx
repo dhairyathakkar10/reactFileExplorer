@@ -84,6 +84,42 @@ const FileExplorerDiv = ({ store, data, inputName, setData, setFName }) => {
       });
     }
   };
+  const rename = (storeData, id, parentNodeId) => {
+    let root = false;
+    if (id === -1) {
+      window.alert("Cannot rename root Folder!");
+      root = true;
+    }
+    if (!root) {
+      storeData.forEach((el) => {
+        if (el.id === parentNodeId) {
+          let newName = window.prompt("Enter new Name");
+          if (newName !== null || newName !== "") {
+            let children = el.children;
+            children.forEach((child) => {
+              if (child.name === newName) {
+                window.alert(
+                  "This name already exists, Please try again with a new name"
+                );
+                return;
+              }
+            });
+            children.forEach((child) => {
+              if (child.id === id) {
+                child.name = newName;
+                setData([...store]);
+              }
+            });
+          }
+        }
+        if (el.children !== null) {
+          rename(el.children, id, parentNodeId);
+        }
+      });
+    }
+
+    console.log(storeData, " ", id, " ", parentNodeId);
+  };
   return (
     <div>
       {data.map((el) =>
@@ -98,6 +134,7 @@ const FileExplorerDiv = ({ store, data, inputName, setData, setFName }) => {
               addFile={addFile}
               store={store}
               deleteElem={deleteElem}
+              rename={rename}
             />
             {el.children && (
               <FileExplorerDiv
