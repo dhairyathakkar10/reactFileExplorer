@@ -27,6 +27,7 @@ const Folder = (props) => {
             className="createFolderBtn"
             onClick={() => {
               dispatch(addFolder1({ state, id: props.folderData.id }));
+              dispatch(handleInput({ name: "" }));
             }}
           >
             &#128193;
@@ -35,6 +36,7 @@ const Folder = (props) => {
             className="createFileBtn"
             onClick={() => {
               dispatch(addFile1({ state, id: props.folderData.id }));
+              dispatch(handleInput({ name: "" }));
             }}
           >
             &#128196;

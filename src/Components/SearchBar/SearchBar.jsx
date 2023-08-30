@@ -2,7 +2,7 @@ import { handleInput } from "../../redux/fileExplorerSlice";
 import "./SearchBar.css";
 import { useSelector, useDispatch } from "react-redux";
 
-const SearchBar = (props) => {
+const SearchBar = () => {
   let dispatch = useDispatch();
   let state = useSelector((state) => state.fileExplorer);
   return (

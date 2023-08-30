@@ -175,16 +175,6 @@ const toggle = (storeData, folderData) => {
       toggle(el.children, folderData);
     }
   });
-  //   let childrend = folderData.children;
-  //   childrend.forEach((child) => {
-  //     const objCopy = { ...child };
-  //     // objCopy.visible = !objCopy.visible;
-  //     child.visible = !objCopy.visible;
-  //     console.log(objCopy);
-  //     if (child.type === "folder" && child.children !== []) {
-  //       toggle(child, id);
-  //     }
-  //   });
 };
 
 // Action creators are generated for each case reducer function
