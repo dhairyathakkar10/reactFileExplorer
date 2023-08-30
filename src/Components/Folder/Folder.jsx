@@ -2,32 +2,40 @@ import { useState } from "react";
 import "./Folder.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { useDispatch, useSelector } from "react-redux";
+import { addFile1, addFolder1, deleteElement, handleInput, renameElem, toggleElement } from "../../redux/fileExplorerSlice";
 const Folder = (props) => {
   const [toggle, setToggle] = useState(false);
+  let dispatch = useDispatch();
+  let state = useSelector((state) => state.fileExplorer);
+
   return (
-    <div className="folderWrapper">
+    <div className="folderWrapper" key={props.folderData.id}>
       <span
         className="rotate"
         onClick={() => {
-          props.toggle(props.folderData, props.folderData.id);
+          dispatch(toggleElement({ folderData: props.folderData }));
           setToggle(!toggle);
         }}
       >
         {toggle ? <KeyboardArrowRightIcon /> : <KeyboardArrowDownIcon />}
       </span>
       <span>{props.folderData.name}</span>
-
-      {props.inputName !== "" ? (
+      {state.fName !== "" ? (
         <span>
           <span
             className="createFolderBtn"
-            onClick={() => props.addFolder(props.store, props.folderData.id)}
+            onClick={() => {
+              dispatch(addFolder1({ state, id: props.folderData.id }));
+            }}
           >
             &#128193;
           </span>
           <span
             className="createFileBtn"
-            onClick={() => props.addFile(props.store, props.folderData.id)}
+            onClick={() => {
+              dispatch(addFile1({ state, id: props.folderData.id }));
+            }}
           >
             &#128196;
           </span>
@@ -38,25 +46,29 @@ const Folder = (props) => {
 
       <span
         className="deleteBtn"
-        onClick={() =>
-          props.deleteElem(
-            props.store,
-            props.folderData.id,
-            props.folderData.parentNodeId
-          )
-        }
+        onClick={() => {
+          dispatch(
+            deleteElement({
+              state,
+              id: props.folderData.id,
+              parentNodeId: props.folderData.parentNodeId,
+            })
+          );
+        }}
       >
         &#x2715;
       </span>
       <span
         className="rename"
-        onClick={() =>
-          props.rename(
-            props.store,
-            props.folderData.id,
-            props.folderData.parentNodeId
-          )
-        }
+        onClick={() => {
+          dispatch(
+            renameElem({
+              state,
+              id: props.folderData.id,
+              parentNodeId: props.folderData.parentNodeId,
+            })
+          );
+        }}
       >
         &#9998;
       </span>

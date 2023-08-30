@@ -5,7 +5,6 @@ function App() {
   const [fileExplorer, setFileExplorer] = useState([
     {
       id: -1,
-      key: 0,
       level: 0,
       parentNodeId: -1,
       name: "root",

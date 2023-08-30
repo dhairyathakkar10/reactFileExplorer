@@ -1,22 +1,41 @@
+import { deleteElement, renameElem } from "../../redux/fileExplorerSlice";
+import { useDispatch, useSelector } from "react-redux";
 import "./File.css";
 const File = (props) => {
+  const dispatch = useDispatch();
+  let state = useSelector((state) => state.fileExplorer);
+  let id = props.fileData.id;
   return (
-    <div className="fileWrapper">
-      <span className="rotate">&#10148;</span>
+    <div className="fileWrapper" key={props.fileData.id}>
       <span>{props.fileData.name}</span>
       <span
         className="deleteBtn"
-        onClick={() =>
-          props.deleteElem(
-            props.store,
-            props.fileData.id,
-            props.fileData.parentNodeId
-          )
-        }
+        onClick={() => {
+          dispatch(
+            deleteElement({
+              state,
+              id,
+              parentNodeId: props.fileData.parentNodeId,
+            })
+          );
+        }}
       >
         &#x2715;
       </span>
-      <span className="rename">&#9998;</span>
+      <span
+        className="rename"
+        onClick={() => {
+          dispatch(
+            renameElem({
+              state,
+              id,
+              parentNodeId: props.fileData.parentNodeId,
+            })
+          );
+        }}
+      >
+        &#9998;
+      </span>
     </div>
   );
 };
